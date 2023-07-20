@@ -2,6 +2,7 @@ package io.github.luaprogrammer.forum_api.controller
 
 import io.github.luaprogrammer.forum_api.controller.request.TopicRequest
 import io.github.luaprogrammer.forum_api.controller.request.TopicUpdateRequest
+import io.github.luaprogrammer.forum_api.controller.response.TopicByCategoryResponse
 import io.github.luaprogrammer.forum_api.controller.response.TopicResponse
 import io.github.luaprogrammer.forum_api.service.TopicService
 import jakarta.validation.Valid
@@ -21,6 +22,11 @@ import org.springframework.web.util.UriComponentsBuilder
 @RequestMapping("api/topics")
 class TopicController(private val service: TopicService) {
 
+    @GetMapping("/report")
+    fun getTopicsByCategoryCourse(): List<TopicByCategoryResponse> {
+        return service.getTopicsByCategoryCourse()
+    }
+
     @GetMapping
     @Cacheable(value = ["topicsList"])
     fun getTopics(@RequestParam(required = false) nameCourse: String?,
@@ -35,7 +41,7 @@ class TopicController(private val service: TopicService) {
 
     @PostMapping
     @Transactional
-    @CacheEvict(value = ["topicsList"], allEntries = true) //allEntries = true -> limpa todo o cache
+    @CacheEvict(value = ["topicsList"], allEntries = true) //allEntries = true -> limpa o cache por completo
     fun createTopic(
         @RequestBody @Valid topicRequest: TopicRequest,
         uriBuilder: UriComponentsBuilder

@@ -2,6 +2,7 @@ package io.github.luaprogrammer.forum_api.service
 
 import io.github.luaprogrammer.forum_api.controller.request.TopicRequest
 import io.github.luaprogrammer.forum_api.controller.request.TopicUpdateRequest
+import io.github.luaprogrammer.forum_api.controller.response.TopicByCategoryResponse
 import io.github.luaprogrammer.forum_api.controller.response.TopicResponse
 import io.github.luaprogrammer.forum_api.exception.NotFoundException
 import io.github.luaprogrammer.forum_api.mapper.TopicRequestMapper
@@ -20,9 +21,9 @@ class TopicService(
     private val topicRequestMapper: TopicRequestMapper
 ) {
     fun getTopics(nameCourse: String?, pageable: Pageable): Page<TopicResponse> {
-        when (nameCourse) {
-            null -> return repository.findAll(pageable).map { topicResponseMapper.map(it) }
-            else -> return repository.findByCourseName(nameCourse, pageable).map { topicResponseMapper.map(it) }
+        return when (nameCourse) {
+            null -> repository.findAll(pageable).map { topicResponseMapper.map(it) }
+            else -> repository.findByCourseName(nameCourse, pageable).map { topicResponseMapper.map(it) }
         }
     }
 
@@ -49,5 +50,9 @@ class TopicService(
         val topic = repository.findById(id)
             .orElseThrow { throw NotFoundException(TOPIC_NOT_FOUND) }
         repository.delete(topic)
+    }
+
+    fun getTopicsByCategoryCourse(): List<TopicByCategoryResponse> {
+        return repository.findTopicsByCategoryCourse()
     }
 }
