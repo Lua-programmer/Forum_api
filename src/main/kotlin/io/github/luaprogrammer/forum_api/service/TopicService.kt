@@ -7,6 +7,8 @@ import io.github.luaprogrammer.forum_api.exception.NotFoundException
 import io.github.luaprogrammer.forum_api.mapper.TopicRequestMapper
 import io.github.luaprogrammer.forum_api.mapper.TopicResponseMapper
 import io.github.luaprogrammer.forum_api.repository.TopicRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 private const val TOPIC_NOT_FOUND = "Topic not found"
@@ -17,10 +19,10 @@ class TopicService(
     private val topicResponseMapper: TopicResponseMapper,
     private val topicRequestMapper: TopicRequestMapper
 ) {
-    fun getTopics(nameCourse: String?): List<TopicResponse> {
+    fun getTopics(nameCourse: String?, pageable: Pageable): Page<TopicResponse> {
         when (nameCourse) {
-            null -> return repository.findAll().map { topicResponseMapper.map(it) }
-            else -> return repository.findByCourseName(nameCourse).map { topicResponseMapper.map(it) }
+            null -> return repository.findAll(pageable).map { topicResponseMapper.map(it) }
+            else -> return repository.findByCourseName(nameCourse, pageable).map { topicResponseMapper.map(it) }
         }
     }
 
