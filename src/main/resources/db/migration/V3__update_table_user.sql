@@ -1,0 +1,1 @@
+update user_model set password = '$2a$12$VOJ4Xu.047/RodETs5VSDO9uNAmM2KZXyX/rP60y/.4qFBXbKzq12' where id = 1;
