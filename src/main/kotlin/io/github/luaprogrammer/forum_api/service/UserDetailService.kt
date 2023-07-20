@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class UserDetailService(
     private val user: UserModel,
 ) : UserDetails {
-    override fun getAuthorities() = null
+    override fun getAuthorities() = user.role
 
     override fun getPassword() = user.password
 
