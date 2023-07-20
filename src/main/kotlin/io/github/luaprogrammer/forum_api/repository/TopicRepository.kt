@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TopicRepository: JpaRepository<Topic, Long> {}
+interface TopicRepository: JpaRepository<Topic, Long> {
+    fun findByCourseName(nameCourse: String): List<Topic>
+}

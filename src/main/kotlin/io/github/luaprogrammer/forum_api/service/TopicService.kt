@@ -17,9 +17,11 @@ class TopicService(
     private val topicResponseMapper: TopicResponseMapper,
     private val topicRequestMapper: TopicRequestMapper
 ) {
-    fun getTopics(): List<TopicResponse> {
-        return repository.findAll()
-            .map { topicResponseMapper.map(it) }
+    fun getTopics(nameCourse: String?): List<TopicResponse> {
+        when (nameCourse) {
+            null -> return repository.findAll().map { topicResponseMapper.map(it) }
+            else -> return repository.findByCourseName(nameCourse).map { topicResponseMapper.map(it) }
+        }
     }
 
     fun getTopic(id: Long): TopicResponse {

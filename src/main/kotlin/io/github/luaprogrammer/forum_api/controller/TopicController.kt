@@ -16,8 +16,8 @@ import org.springframework.web.util.UriComponentsBuilder
 class TopicController(private val service: TopicService) {
 
     @GetMapping
-    fun getTopics(): List<TopicResponse> {
-        return service.getTopics()
+    fun getTopics(@RequestParam(required = false) nameCourse: String?): List<TopicResponse> {
+        return service.getTopics(nameCourse)
     }
 
     @GetMapping("/{id}")

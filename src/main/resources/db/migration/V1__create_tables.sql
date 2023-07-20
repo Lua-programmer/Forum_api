@@ -6,7 +6,7 @@ create table course
 );
 
 insert into course(id, name, category)
-values (1, 'Java', 'Programação');
+values (1, 'Kotlin', 'Programação');
 
 create table user_model
 (
