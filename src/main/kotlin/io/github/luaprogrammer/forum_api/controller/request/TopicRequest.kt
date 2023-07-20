@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size
 
 data class TopicRequest(
     @field: NotEmpty(message = "Title cannot be empty")
-    @field: Size(min = 5, max = 100, message = "Title must be between 5 and 100 characters")
+    @field: Size(min = 2, max = 100, message = "Title must be between 5 and 100 characters")
     val title: String,
 
     @field: NotEmpty(message = "Message cannot be empty")

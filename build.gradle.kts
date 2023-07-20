@@ -28,8 +28,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.1")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-noarg:1.8.22")
-    implementation("com.h2database:h2:2.2.220")
+    implementation("com.h2database:h2:1.4.200")
+    implementation("org.flywaydb:flyway-core:8.5.13")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
