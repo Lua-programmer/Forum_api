@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
+    id("org.flywaydb.flyway") version "9.21.0"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.jpa") version "1.8.22"
@@ -31,7 +32,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-noarg:1.8.22")
     implementation("com.h2database:h2:1.4.200")
-    implementation("org.flywaydb:flyway-core:8.5.13")
+//    implementation("org.flywaydb:flyway-core:8.5.13")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
@@ -47,4 +48,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+flyway {
+    locations = arrayOf("src/main/resources/db/migration")
 }

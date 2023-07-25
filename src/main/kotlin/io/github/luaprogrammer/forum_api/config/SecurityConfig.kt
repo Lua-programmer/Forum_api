@@ -22,12 +22,14 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { authorize ->
                 authorize
-                    .anyRequest().authenticated()
+                    .requestMatchers("/api/topics")
+                    .hasAuthority("LEITURA_ESCRITA")
+                    .anyRequest()
+                    .authenticated()
             }
         return http.build()
     }
 
-    @Bean
     fun configure(auth: AuthenticationManagerBuilder) {
         auth
             .userDetailsService(userDetailsService)
