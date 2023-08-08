@@ -22,7 +22,7 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { authorize ->
                 authorize
-                    .requestMatchers("/api/topics")
+                    .requestMatchers("/topics")
                     .hasAuthority("LEITURA_ESCRITA")
                     .anyRequest()
                     .authenticated()

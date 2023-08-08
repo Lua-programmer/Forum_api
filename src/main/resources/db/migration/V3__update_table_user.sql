@@ -1,1 +1,1 @@
-update user_model set password = '$2a$12$VOJ4Xu.047/RodETs5VSDO9uNAmM2KZXyX/rP60y/.4qFBXbKzq12' where id = 1;
+update user_model set password = '$2a$12$sac/1mchUT7KqUIiHlJOyuydmHA9Qo9LXrSIK0RDrW24EfSyzhsly' where id = 1;
